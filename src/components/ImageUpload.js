@@ -69,6 +69,18 @@ export default function ImageUpload({ onUpload }) {
   return (
     <div className="w-full max-w-xl mx-auto backdrop-blur-sm bg-white/90 p-4 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
       <div className="space-y-4 sm:space-y-6">
+        <input
+          type="file"
+          onChange={handleFileSelect}
+          accept="image/*,video/*,capture=camera"
+          capture="environment"
+          className="block w-full text-sm text-gray-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100"
+        />
         {/* File Selection Area */}
         <div className="group relative border-2 border-dashed border-gray-300 rounded-2xl p-6 sm:p-10 text-center hover:border-blue-500 transition-all duration-300 hover:bg-blue-50/50">
           <input
