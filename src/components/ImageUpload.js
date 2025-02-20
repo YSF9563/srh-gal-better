@@ -34,36 +34,38 @@ export default function ImageUpload({ onUpload }) {
       setPreview(URL.createObjectURL(file));
     }
   };
-
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!selectedFile) {
       setError('Please select a file');
       return;
     }
-
+  
     if (!imageName) {
       setError('Please enter a name');
       return;
     }
+  
+    try {
+      // Create file object for Supabase
+      const fileExt = selectedFile.name.split('.').pop();
+      const fileName = `${Date.now()}.${fileExt}`;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      onUpload({
-        id: Date.now(),
+      // Upload to Supabase
+      await onUpload({
         name: imageName,
-        url: e.target.result,
+        file: selectedFile,
         type: selectedFile.type
       });
+
+      // Reset form
       setImageName('');
       setSelectedFile(null);
       setPreview(null);
-    };
-    reader.onerror = () => {
-      setError('Error reading file');
-    };
-    reader.readAsDataURL(selectedFile);
+      setError('');
+    } catch (error) {
+      setError('Error uploading file');
+    }
   };
-
   return (
     <div className="w-full max-w-xl mx-auto backdrop-blur-sm bg-white/90 p-4 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
       <div className="space-y-4 sm:space-y-6">
