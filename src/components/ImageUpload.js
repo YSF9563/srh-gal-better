@@ -72,8 +72,7 @@ export default function ImageUpload({ onUpload }) {
         <input
           type="file"
           onChange={handleFileSelect}
-          accept="image/*,video/*,capture=camera"
-          capture="environment"
+          accept="*/*"
           className="block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
@@ -85,7 +84,7 @@ export default function ImageUpload({ onUpload }) {
         <div className="group relative border-2 border-dashed border-gray-300 rounded-2xl p-6 sm:p-10 text-center hover:border-blue-500 transition-all duration-300 hover:bg-blue-50/50">
           <input
             type="file"
-            accept="image/*,video/*"
+            accept="*/*"
             onChange={handleFileSelect}
             className="hidden"
             id="file-upload"
