@@ -13,11 +13,6 @@ export default function ImageUpload({ onUpload }) {
 
     if (!file) return;
 
-    if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
-      setError('Please upload an image or video file');
-      return;
-    }
-
     if (file.size > 50 * 1024 * 1024) {
       setError('File size must be less than 50MB');
       return;
@@ -72,7 +67,6 @@ export default function ImageUpload({ onUpload }) {
         <input
           type="file"
           onChange={handleFileSelect}
-          accept="*/*"
           className="block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
